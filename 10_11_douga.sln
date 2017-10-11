@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "10_11_douga", "10_11_douga\10_11_douga.pyproj", "{A43F9793-A56D-4A31-A06B-86878E926255}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A43F9793-A56D-4A31-A06B-86878E926255}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A43F9793-A56D-4A31-A06B-86878E926255}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3450D1CC-A6B0-4BC4-B538-39FB8501CBD2}
+	EndGlobalSection
+EndGlobal
