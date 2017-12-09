@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 
-cap = cv2.VideoCapture('D:/opencv3.2.0/sources/samples/data/vtest.avi')
+cap = cv2.VideoCapture('C:/human_detection/DCIM/MOV_0166_s.mpg')
 
 #shrink the rectangle from default
 def draw_detections(img, rects, thickness = 1):
@@ -9,26 +9,41 @@ def draw_detections(img, rects, thickness = 1):
         pad_w, pad_h = int(0.15 * w), int(0.05 * h)
         cv2.rectangle(img, (x + pad_w, y + pad_h), (x + w - pad_w, y + h - pad_h), (0, 255, 0), thickness)
 
-#default detector
-def PD_default(filename):
-    image = filename#cv2.imread(filename) #read image
-    hog = cv2.HOGDescriptor() #derive HOG features
-    hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector()) #setSVMDetector
 
-    #pedestrian detection
-    found, w = hog.detectMultiScale(image, hitThreshold = 0, winStride = (8,8), padding = (0, 0), scale = 1.05, finalThreshold = 5)
+hog = cv2.HOGDescriptor() #derive HOG features
+hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector()) #setSVMDetector
 
-    draw_detections(image, found) #draw rectangles
-
-    #write & save image
-    cv2.imshow('original', image) #write image
-    cv2.waitKey(1) #for keyboard binding
-    #cv2.imwrite('test.jpg',image) # save image
-
+oto=0
 while(cap.isOpened()):
     ret, frame = cap.read()
-    PD_default(frame)
+    if not ret :
+      break
+    #default detector
+    
 
+    #pedestrian detection
+    #元コード
+    #found, w = hog.detectMultiScale(frame, hitThreshold = 0, winStride = (8,8), padding = (0, 0), scale = 1.05, finalThreshold = 5)
+    found, w = hog.detectMultiScale(frame, hitThreshold = 0.35, winStride = (8,8), padding = (0, 0), scale = 1.05, finalThreshold = 5)
+    print(found)
+    draw_detections(frame, found) #draw rectangles
+
+    if (found !=()):
+        oto=oto+1
+        if oto==1 :
+           oto=0
+           print ("\n")
+           print ('\007')
+    else:
+        print ("\n")
+        print ('wrong')
+        oto=0
+
+    #write & save frame
+    cv2.imshow('original', frame) #write frame
+    cv2.waitKey(1) #for keyboard binding
+    #cv2.imwrite('test.jpg',frame) # save frame
+    
 cap.release()
 cv2.destroyAllWindows()
 
