@@ -13,7 +13,10 @@ def draw_detections(img, rects, thickness = 1):
 hog = cv2.HOGDescriptor() #derive HOG features
 hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector()) #setSVMDetector
 
-oto=0
+ok=0
+all=0
+bunsi=1
+bunbo=2
 while(cap.isOpened()):
     ret, frame = cap.read()
     if not ret :
@@ -28,16 +31,14 @@ while(cap.isOpened()):
     print(found)
     draw_detections(frame, found) #draw rectangles
 
+    all=all+1
     if (found !=()):
-        oto=oto+1
-        if oto==1 :
-           oto=0
-           print ("\n")
-           print ('\007')
-    else:
-        print ("\n")
-        print ('wrong')
-        oto=0
+         ok=ok+1
+    if all==bunbo :
+       if ok/all >= bunsi/bunbo:
+          print ('\007')
+       ok=0
+       all=0
 
     #write & save frame
     cv2.imshow('original', frame) #write frame
